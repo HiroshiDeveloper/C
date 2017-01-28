@@ -24,8 +24,6 @@ void probrem4();
 // probrem5
 void probrem5();
 
-void foo(int**p);
-
 int main(int argc, const char * argv[]) {
     
     //*** probrem1***
@@ -209,7 +207,7 @@ void probrem5(){
 //
 //  - How to use argc and argv?
 //      $ gcc main.c -o cmdline_basic
-//      ./cmdline_basic test1 test2 test3
+//      $ ./cmdline_basic test1 test2
 //
 //  - Provide an example
 //      #include <stdio.h>
