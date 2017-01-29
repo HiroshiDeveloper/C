@@ -224,7 +224,7 @@ void probrem5(){
 //          return 0;
 //      }
 //      -- result --
-//      cmdline args count=3
+//      cmdline args count=2
 //      exe name=./cmdline
 //      arg1=test1
 //      arg2=test2
