@@ -62,7 +62,7 @@ void probrem3(){
     printf("Your name is %s", yourName);
     
     // number3
-    printf("Type a number between 0 and 9999\n");
+    //printf("Type a number between 0 and 9999\n");
     
     
     return;
