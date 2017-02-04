@@ -12,6 +12,8 @@
 
 #define LENGTH 50
 #define INDEX5 5
+#define COUNTER2000 2000
+#define COUNTER20 20
 
 //*** problem1 ***
 void problem1();
@@ -24,6 +26,16 @@ int *problem3(int *array, int index);
 
 //*** problem4 ***
 float problem4(float *array);
+
+//*** problem5 ***
+void problem5(int *number, int index);
+
+//*** problem6 ***
+int problem6(int *store, int number, int index);
+
+//*** bonus problem
+void bonusProblem(int *array, int number);
+unsigned getRandInterval(unsigned begin, unsigned end);
 
 int main(int argc, const char * argv[]) {
     //*** problem1 ***
@@ -41,7 +53,7 @@ int main(int argc, const char * argv[]) {
     for(int i = 0; i < index; i++){
         printf("Print out the copy array[%d] : %d\n", i, cpyArray[i]);
     }
-     */
+    */
     
     //*** problem4 ***
     /*
@@ -49,6 +61,34 @@ int main(int argc, const char * argv[]) {
     float difference = problem4(array);
     printf("The difference is %f\n", difference);
      */
+    
+    //*** problem5 ***
+    /*
+    int index = 4;
+    int storeNumbers[4] = {3, 5, 6, 8};
+    problem5(storeNumbers, index);
+     */
+    
+    //*** problem6 ***
+    /*
+    int index = 4;
+    int search = 4;
+    int storeNumbers[4] = {3, 5, 6, 8};
+    int result = problem6(storeNumbers, search, index);
+    if(result == -1){
+        printf("Cannot find %d in the array\n", search);
+    }else{
+        printf("The index of array is %d\n", result);
+    }
+    */
+    
+    //*** bonus problem ***
+    int array[COUNTER20];
+    for(int i = 0; i < COUNTER20; i++){
+        array[i] = getRandInterval(1, 1000);
+    }
+    int randomNumber = getRandInterval(1, 1000);
+    bonusProblem(array, randomNumber);
     
     return 0;
 }
@@ -133,4 +173,82 @@ float problem4(float *array){
     }
     
     return max - min;
+}
+
+//**********************
+// Problem5
+//**********************
+void problem5(int *number, int index){
+    int odd = 0;
+    int even = 0;
+    
+    for(int i = 0; i <= index; i++){
+        if(number[i] % 2 == 0){
+            even++;
+        }else{
+            odd++;
+        }
+    }
+    
+    printf("Counts odd : %d\n", odd);
+    printf("Counts even : %d\n", even);
+}
+
+//**********************
+// Problem6
+//**********************
+int problem6(int *store, int number, int index){
+    int flg = 0;
+    
+    for(int i = 0; i <= index; i++){
+        if(store[i] == number){
+            return i;
+        }else{
+            flg = -1;
+        }
+    }
+    
+    if(flg == -1){
+        return -1;
+    }
+    
+    return 0;
+}
+
+//**********************
+// Problem7
+//**********************
+// We did it in class together.
+
+//**********************
+// Bonus Problem
+//**********************
+void bonusProblem(int *array, int number){
+    int sum = 0;
+    int flg = 0;
+    
+    for(int i = 0; i < COUNTER20; i++){
+        printf("array[%d] : %d\n", i, array[i]);
+        for(int j = 0; j < COUNTER20; j++){
+            sum = array[i] + array[j];
+            if(sum == number){
+                //printf("%d is equal to array[%d]:%d + array[%d]:%d\n", number, i, array[i], j, array[j]);
+                flg = 1;
+            }
+        }
+    }
+    
+    if(flg == 0){
+        printf("Error. No matched numbers with %d\n", number);
+    }
+}
+
+unsigned getRandInterval(unsigned begin, unsigned end){
+    unsigned range = (end - begin) + 1;
+    unsigned limit = (RAND_MAX) - (RAND_MAX % range);
+    unsigned randVal = rand();
+    
+    while(randVal >= limit) randVal = rand();
+    
+    return (randVal % range) + begin;
 }
