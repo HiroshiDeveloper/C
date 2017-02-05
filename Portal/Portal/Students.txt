@@ -1,0 +1,23 @@
+studentID:”7813007”
+name:”firstname lastname”
+gender:”male”
+grade:”2”
+address: “850 West Hastings, Vancouver”
+admission_year:”2012”
+courses:”MADP101”,”MADP202”,”MADP301”,”MADP401”
+
+studentID:”7813008”
+name:”firstname lastname”
+gender:”male”
+grade:”3”
+address: “850 West Vancouver, Vancouver”
+admission_year:”2012”
+courses:”MADP101”
+
+studentID:”7813009”
+name:”firstname lastname”
+gender:”male”
+grade:”3”
+address: “850 West Vancouver, Vancouver”
+admission_year:”2012”
+courses:”MADP101”
