@@ -14,7 +14,7 @@
 #define STUDENTSPATH "/Users/hiroshi/Documents/Github/C/Portal/Portal/Students.txt"
 
 void loginMenu();
-void file(char *fileName);
+void file(char *fileName, storeSize);
 
 int main(int argc, const char * argv[]) {
     loginMenu();
@@ -25,6 +25,8 @@ int main(int argc, const char * argv[]) {
 void loginMenu(){
     char studentId;
     char password;
+    int storeSize = 0;
+    
     printf("******************************************\n");
     printf("Please enter your account to login:\n");
     printf("******************************************\n");
@@ -32,12 +34,14 @@ void loginMenu(){
     scanf("%s", &studentId);
     printf("Password: ");
     scanf("%s", &password);
-    file(ACCOUNTSPATH);
+    
+    storeSize = 2;
+    file(ACCOUNTSPATH, storeSize);
 }
 
-void file(char *fileName){
-    FILE * fp;
-    char * line = NULL;
+void file(char *fileName, int storeSize){
+    FILE *fp;
+    char *line = NULL;
     size_t len = 0;
     ssize_t read;
     int flg = 0;

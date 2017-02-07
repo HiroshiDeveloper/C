@@ -10,6 +10,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define LENGTHSTRUCT 10
+
 //*** problem1 ***
 // number1-1-1
 struct date{
@@ -41,9 +43,16 @@ struct item{
 void problem1();
 
 //*** problem3 ***
+struct item *pointerItem();
 
 int main(int argc, const char * argv[]) {
-    problem1();
+    // *** problem1 ***
+    //problem1();
+    
+    // *** problem3 ***
+    struct item* test = pointerItem();
+    printf("%d\n", test[2].age);
+    
     return 0;
 }
 
@@ -87,4 +96,31 @@ void problem1(){
         printf("sample[%d] address %p,day:%d %p, month:%d %p, year:%d %p\n", i, &sample[i], *(sample[i]->day), &sample[i]->day, *(sample[i]->month), &sample[i]->month, *(sample[i]->year), &sample[i]->year);
         free(sample[i]);
     }
+}
+
+//**********************
+// Problem2
+//**********************
+// We finished this in class together
+
+//**********************
+// Problem3
+//**********************
+struct item *pointerItem(){
+    struct item *pointerItem[LENGTHSTRUCT];
+    
+    for(int i = 0; i < LENGTHSTRUCT; i++){
+        pointerItem[i] = (struct item*)malloc(sizeof(struct item));
+        printf("Enter an age\n");
+        scanf("%d", &pointerItem[i]->age);
+        
+        pointerItem[i]->next = (struct item*)malloc(sizeof(struct item));
+    }
+    
+    for(int j = 0; j < LENGTHSTRUCT; j++){
+        pointerItem[j]->next = pointerItem[j + 1]->next;
+        printf("The 10 ages #%d : %d\n", j, pointerItem[j]->age);
+    }
+    
+    return *pointerItem;
 }
