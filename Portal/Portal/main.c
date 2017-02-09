@@ -14,7 +14,7 @@
 #define STUDENTSPATH "/Users/hiroshi/Documents/Github/C/Portal/Portal/Students.txt"
 
 void loginMenu();
-void file(char *fileName, storeSize);
+void file(char *fileName, int storeSize);
 
 int main(int argc, const char * argv[]) {
     loginMenu();

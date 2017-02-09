@@ -8,8 +8,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define INTSIZE 10
+#define STORECSIZE 10
+#define CHARSIZE 256
+#define PROBLEM4SIZE 5
+#define DYNAMICSIZE 10
 
 //*** problem1 ***
 void problem1();
@@ -19,15 +24,21 @@ void problem2();
 
 //*** problem4 ***
 void problem4();
+int fixedLines(char arr[][CHARSIZE], int length);
+int semiFixedLines(char *arr[], int length);
+int dynamicLines(char **arr, int length);
 
 int main(int argc, const char * argv[]) {
     //*** problem1 ***
-    //problem1();
-    
+    printf("*** problem1 ***\n");
+    problem1();
+
     //*** problem2 ***
-    //problem2();
+    printf("\n*** problem2 ***\n");
+    problem2();
     
     //*** problem4 ***
+    printf("\n*** problem4 ***\n");
     problem4();
     
     return 0;
@@ -80,28 +91,95 @@ void problem2(){
 // Problem4
 //**********************
 void problem4(){
-    int storeA[5];
-    int *storeB = malloc(sizeof (int) * 5);
-    int number;
+    // number1
+    char storeA[5][CHARSIZE];
+    // number2
+    char *storeB[5];
+    // number3
+    char **storeC;
+    int counter = 0, check = 0;
+    int flg = 1;
     
     // number1
-    /*
     printf("A : Type numbers 5 times\n");
-    for(int i = 0; i < 5; i++){
-        scanf("%d", &number);
-        storeA[i] = number;
+    for(int i = 0; i < PROBLEM4SIZE; i++){
+        fgets(storeA[i], CHARSIZE, stdin);
     }
+     
+    // number4
+    int longest1 = fixedLines(storeA, 5);
+    printf("(Number4) The longest lengh is %d\n", longest1);
     
     // number2
     printf("B : Type numbers 5 times\n");
-    for(int j = 0; j < 5; j++){
-        scanf("%d", &number);
-        storeB[j] = number;
+    for(int j = 0; j < PROBLEM4SIZE; j++){
+        storeB[j] = malloc(sizeof (char) * CHARSIZE);
+        fgets(storeB[j], CHARSIZE, stdin);
     }
-    //printf("%d\n", storeB[2]);
-     */
+    
+    // number5
+    int longest2 = semiFixedLines(storeB, PROBLEM4SIZE);
+    printf("(Number5) The longest lengh is %d\n", longest2);
+    for(int k = 0; k < PROBLEM4SIZE; k++){
+        free(storeB[k]);
+    }
     
     // number3
+    storeC = (char**)malloc(sizeof(char*) * DYNAMICSIZE);
+    printf("C : Type numbers\n");
+    while(flg){
+        storeC[counter] = malloc(sizeof (char) * CHARSIZE);
+        fgets(storeC[counter], CHARSIZE, stdin);
+        check = strncmp(storeC[counter], "\n", 1);
+        if(check == 0){
+            printf("** The end **\n");
+            break;
+        }
+        counter++;
+    }
     
+    // number6
+    int longest3 = dynamicLines(storeC, counter);
+    printf("(Number5) The longest lengh is %d\n", longest3);
+    
+    free(storeC);
+    for(int l = 0; l < counter; l++){
+        free(storeC[l]);
+    }
+}
 
+// number4
+int fixedLines(char arr[][CHARSIZE], int length){
+    int max = 0;
+    
+    for(int i = 0; i < length; i++){
+        if(max < (int)strlen(arr[i]) - 1){
+            max = (int)strlen(arr[i]) - 1;
+        }
+    }
+    return max;
+}
+
+// number5
+int semiFixedLines(char **arr, int length){
+    int max = 0;
+    
+    for(int i = 0; i < length; i++){
+        if(max < (int)strlen(arr[i]) - 1){
+            max = (int)strlen(arr[i]) - 1;
+        }
+    }
+    return max;
+}
+
+// number6
+int dynamicLines(char **arr, int length){
+    int max = 0;
+    
+    for(int i = 0; i < length; i++){
+        if(max < (int)strlen(arr[i]) - 1){
+            max = (int)strlen(arr[i]) - 1;
+        }
+    }
+    return max;
 }
