@@ -46,9 +46,9 @@ void loginMenu(){
 
 void AccountFile(char *fileName, char *studentId, char *password){
     FILE *fp;
-    char *line = NULL, *words;
     size_t len = 0;
     ssize_t read;
+    char *line = NULL, *words;
     int idFlg = 0;
     
     // file open
@@ -60,17 +60,16 @@ void AccountFile(char *fileName, char *studentId, char *password){
         exit(0);
     }
     
-    printf("%s\n", studentId);
-    
     // read the file line by line
     while ((read = getline(&line, &len, fp)) != -1) {
         if((int)strlen(line) != 1){
-            words = extractWords(line);
+            words = extractWords(line);             // extract words e.g.) StudentId, Pass
             if(strcmp(words, studentId) == 0){
                 idFlg = 1;
-            }else if(idFlg == 1 && strcmp(words, password) == 0){
+            }else if(idFlg == 1 && strcmp(words, password) == 0){   // check studentId and pass
                 printf("WELCOME\n");
             }
+            free(words);
         }else{
             idFlg = 0;
         }
@@ -79,15 +78,17 @@ void AccountFile(char *fileName, char *studentId, char *password){
 
 char *extractWords(char *line){
     int length = (int)(strlen(line) - 2);   // subtract '"' + '\n'
-    int checkPoint = 0;
-    char words[length];
-    char *result;
+    int checkPoint = -1;
+    char *words = malloc(sizeof(char) * length);
     
     for(int i = 0; i < length; i++){
-        if(line[i] == '\"'){
-            checkPoint = i;
+        
+        if(checkPoint != -1){
+            words[checkPoint] = line[i];    // copy characters one by one
+            checkPoint++;
+        }else if(line[i] == '\"'){          // find this character '"'
+            checkPoint = 0;
         }
     }
-    result = memcpy(words, &line[checkPoint + 1], length - checkPoint - 1);
-    return result;
+    return words;
 }
