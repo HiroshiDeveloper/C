@@ -1,23 +1,21 @@
-studentID:”7813007”
-name:”firstname lastname”
-gender:”male”
-grade:”2”
-address: “850 West Hastings, Vancouver”
-admission_year:”2012”
-courses:”MADP101”,”MADP202”,”MADP301”,”MADP401”
-
-studentID:”7813008”
-name:”firstname lastname”
-gender:”male”
-grade:”3”
-address: “850 West Vancouver, Vancouver”
-admission_year:”2012”
-courses:”MADP101”
-
-studentID:”7813009”
-name:”firstname lastname”
-gender:”male”
-grade:”3”
-address: “850 West Vancouver, Vancouver”
-admission_year:”2012”
-courses:”MADP101”
+1studentID:"7813007"
+2name:"firstname lastname1"
+3gender:"male"
+4grade:"2"
+5address:"850 West Hastings, Vancouver"
+6admission_year:"2012"
+7courses:"MADP101,MADP20244,MADP301,MADP401"
+1studentID:"7813008"
+2name:"firstname lastname2"
+3gender:"male"
+4grade:"3"
+5address:"850 West Vancouver, Vancouver"
+6admission_year:"2012"
+7courses:"MADP101"
+1studentID:"7813009"
+2name:"firstname lastname3"
+3gender:"male"
+4grade:"3"
+5address:"850 West Vancouver, Vancouver"
+6admission_year:"2012"
+7courses:"MADP101"
