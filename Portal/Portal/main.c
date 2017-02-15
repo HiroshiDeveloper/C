@@ -8,12 +8,22 @@
 
 #include "header.h"
 #include "accounts.h"
+#include "certificate.h"
+#include "courses.h"
 
 // account
 struct account *loginMenu(struct account *account, char *studentId, char *password);
 
+// main menu 1.
+struct student *studentFile(char *studentId, char *fileName);
+void createCertificate(struct student *student);
+
+// main menu 2.
+void courseFile(struct student *student, char *fileName);
+
 // main
 int mainMenu();
+void switchMenu(int number, char *studentId);
 
 int main(int argc, const char * argv[]) {
     char *studentId = malloc(sizeof(char) * CHARLENGTH);
@@ -27,7 +37,8 @@ int main(int argc, const char * argv[]) {
     
     // Main menu
     int number = mainMenu();
-    printf("The number is %d\n", number);
+    printf("The number is %d\n\n\n", number);
+    switchMenu(number, account->studentId);
     
     free(account);
     free(studentId);
@@ -64,13 +75,28 @@ int mainMenu(){
     return number;
 }
 
-/*
-void switchMenu(int *number){
-    switch(*number){
-        case 1:
-            
-            
+void switchMenu(int number, char *studentId){
+    if(number == 1 || number == 2){
+        struct student *student = studentFile(studentId, STUDENTSPATH);
+        if(number == 1){
+            createCertificate(student);
+        }else if(number == 2){
+            courseFile(student, COURSESPATH);
+        }
+        free(student);
+    }else if(number == 3){
+    
+    }else if(number == 4){
+        
+    }else if(number == 5){
+        
+    }else if(number == 6){
+        
+    }else if(number == 7){
+        
+    }else if(number == 8){
+        
+    }else{
+        
     }
 }
- */
-

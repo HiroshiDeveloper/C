@@ -4,7 +4,7 @@
 4grade:"2"
 5address:"850 West Hastings, Vancouver"
 6admission_year:"2012"
-7courses:"MADP101,MADP20244,MADP301,MADP401"
+7courses:"MADP101,MADP202,MADP301,MADP401"
 1studentID:"7813008"
 2name:"firstname lastname2"
 3gender:"male"
