@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		68D4E68F1E5399B00003BA78 /* courses.c in Sources */ = {isa = PBXBuildFile; fileRef = 68D4E68D1E5399B00003BA78 /* courses.c */; };
 		68E586D61E47DC0D0056667B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 68E586D51E47DC0D0056667B /* main.c */; };
+		68EA84221E548CCF00637592 /* transcript.c in Sources */ = {isa = PBXBuildFile; fileRef = 68EA84201E548CCF00637592 /* transcript.c */; };
+		68EA84251E54A28B00637592 /* gpa.c in Sources */ = {isa = PBXBuildFile; fileRef = 68EA84231E54A28B00637592 /* gpa.c */; };
 		68F4246E1E4E84F1004105B9 /* accounts.c in Sources */ = {isa = PBXBuildFile; fileRef = 68F4246D1E4E84F1004105B9 /* accounts.c */; };
 		68F424711E4EC2CA004105B9 /* certificate.c in Sources */ = {isa = PBXBuildFile; fileRef = 68F4246F1E4EC2CA004105B9 /* certificate.c */; };
 /* End PBXBuildFile section */
@@ -34,6 +36,10 @@
 		68D4E68E1E5399B00003BA78 /* courses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = courses.h; path = ../../../../courses.h; sourceTree = "<group>"; };
 		68E586D21E47DC0D0056667B /* Portal */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Portal; sourceTree = BUILT_PRODUCTS_DIR; };
 		68E586D51E47DC0D0056667B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		68EA84201E548CCF00637592 /* transcript.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = transcript.c; path = ../../../../transcript.c; sourceTree = "<group>"; };
+		68EA84211E548CCF00637592 /* transcript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = transcript.h; path = ../../../../transcript.h; sourceTree = "<group>"; };
+		68EA84231E54A28B00637592 /* gpa.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = gpa.c; path = ../../../../gpa.c; sourceTree = "<group>"; };
+		68EA84241E54A28B00637592 /* gpa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = gpa.h; path = ../../../../gpa.h; sourceTree = "<group>"; };
 		68F4246B1E4E84F1004105B9 /* header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
 		68F4246C1E4E84F1004105B9 /* accounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accounts.h; sourceTree = "<group>"; };
 		68F4246D1E4E84F1004105B9 /* accounts.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = accounts.c; sourceTree = "<group>"; };
@@ -75,10 +81,14 @@
 				68F4246C1E4E84F1004105B9 /* accounts.h */,
 				68F424701E4EC2CA004105B9 /* certificate.h */,
 				68D4E68E1E5399B00003BA78 /* courses.h */,
+				68EA84211E548CCF00637592 /* transcript.h */,
+				68EA84241E54A28B00637592 /* gpa.h */,
 				68E586D51E47DC0D0056667B /* main.c */,
 				68F4246D1E4E84F1004105B9 /* accounts.c */,
 				68F4246F1E4EC2CA004105B9 /* certificate.c */,
 				68D4E68D1E5399B00003BA78 /* courses.c */,
+				68EA84201E548CCF00637592 /* transcript.c */,
+				68EA84231E54A28B00637592 /* gpa.c */,
 				68110F781E4D6E13004A053C /* Accounts.txt */,
 				68110F791E4D6E1B004A053C /* Courses.txt */,
 				68110F7A1E4D6E1F004A053C /* Students.txt */,
@@ -144,8 +154,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68EA84251E54A28B00637592 /* gpa.c in Sources */,
 				68E586D61E47DC0D0056667B /* main.c in Sources */,
 				68F4246E1E4E84F1004105B9 /* accounts.c in Sources */,
+				68EA84221E548CCF00637592 /* transcript.c in Sources */,
 				68D4E68F1E5399B00003BA78 /* courses.c in Sources */,
 				68F424711E4EC2CA004105B9 /* certificate.c in Sources */,
 			);

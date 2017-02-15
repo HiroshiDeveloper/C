@@ -34,9 +34,9 @@ struct account * loginMenu(struct account *account, char *studentId, char *passw
         free(password);
         exit(0);
     }else{
-        printf("******************************************************\n");
+        printf("\n******************************************************\n");
         printf("Welcome to CICCC\n");
-        printf("******************************************************\n");
+        printf("******************************************************\n\n");
     }
     return account;
 }
@@ -72,6 +72,7 @@ struct account *AccountFile(struct account *account, char *fileName, char *stude
         counter++;
         free(words);
     }
+    fclose(fp);
     return account;
 }
 

@@ -4,3 +4,13 @@
 1studentID:"7813007"
 2courseID:"MADP301"
 3mark:"60"
+1studentID:"7813008"
+2courseID:"MADP101"
+3mark:"95"
+1studentID:"7813008"
+2courseID:"MADP301"
+3mark:"30"
+1studentID:"7813009"
+2courseID:"MADP101"
+3mark:"70"
+

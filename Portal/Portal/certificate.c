@@ -67,6 +67,7 @@ struct student *studentFile(char *studentId, char *fileName){
             flg++;
         }
     }
+    fclose(fp);
     return student;
 }
 

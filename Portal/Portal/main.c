@@ -10,6 +10,7 @@
 #include "accounts.h"
 #include "certificate.h"
 #include "courses.h"
+#include "transcript.h"
 
 // account
 struct account *loginMenu(struct account *account, char *studentId, char *password);
@@ -20,6 +21,9 @@ void createCertificate(struct student *student);
 
 // main menu 2.
 void courseFile(struct student *student, char *fileName);
+
+// main menu 3.
+void transcript(struct student *student, char *fileName);
 
 // main
 int mainMenu();
@@ -32,12 +36,9 @@ int main(int argc, const char * argv[]) {
     // Account check
     struct account *account = (struct account*)malloc(sizeof(struct account));
     account = loginMenu(account, studentId, password);
-    printf("StudentId : %s\n", account->studentId);
-    printf("Password : %s\n", account->password);
     
     // Main menu
     int number = mainMenu();
-    printf("The number is %d\n\n\n", number);
     switchMenu(number, account->studentId);
     
     free(account);
@@ -52,7 +53,7 @@ int mainMenu(){
     
     while(flg){
         printf("******************************************************\n");
-        printf("Select from the optiosn:\n");
+        printf("Select from the options:\n");
         printf("******************************************************\n");
         printf("-[1] Print my enrolment certificate\n");
         printf("-[2] Print my courses\n");
@@ -64,7 +65,7 @@ int mainMenu(){
         printf("-[8] Logout\n");
         printf("-[9] Exit\n");
         printf("******************************************************\n");
-        printf("Enter the number corresponding to each item to procees:\n");
+        printf("Enter the number corresponding to each item to procees: ");
         scanf("%d", &number);
         if(number < 10 && number > 0){
             flg = 0;
@@ -76,16 +77,16 @@ int mainMenu(){
 }
 
 void switchMenu(int number, char *studentId){
-    if(number == 1 || number == 2){
+    if(number == 1 || number == 2 || number == 3){
         struct student *student = studentFile(studentId, STUDENTSPATH);
         if(number == 1){
             createCertificate(student);
         }else if(number == 2){
             courseFile(student, COURSESPATH);
+        }else if(number == 3){
+            transcript(student, STUDENTSCOURSESPATH);
         }
         free(student);
-    }else if(number == 3){
-    
     }else if(number == 4){
         
     }else if(number == 5){
