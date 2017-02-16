@@ -25,6 +25,10 @@ void courseFile(struct student *student, char *fileName);
 // main menu 3.
 void transcript(struct student *student, char *fileName);
 
+// main menu 4.
+// main menu 5.
+float gpa(struct student *student, char *fileName, int rankFlg);
+
 // main
 int mainMenu();
 void switchMenu(int number, char *studentId);
@@ -77,20 +81,26 @@ int mainMenu(){
 }
 
 void switchMenu(int number, char *studentId){
-    if(number == 1 || number == 2 || number == 3){
+    float myGpa = 0;
+    
+    if(number == 1 || number == 2 || number == 3 || number == 4 || number == 5){
         struct student *student = studentFile(studentId, STUDENTSPATH);
         if(number == 1){
             createCertificate(student);
-        }else if(number == 2){
+        }
+        else if(number == 2){
             courseFile(student, COURSESPATH);
-        }else if(number == 3){
+        }
+        else if(number == 3){
             transcript(student, STUDENTSCOURSESPATH);
         }
+        else if(number == 4){
+            myGpa = gpa(student, STUDENTSCOURSESPATH, 0);
+        }
+        else if(number == 5){
+            myGpa = gpa(student, STUDENTSCOURSESPATH, 1);
+        }
         free(student);
-    }else if(number == 4){
-        
-    }else if(number == 5){
-        
     }else if(number == 6){
         
     }else if(number == 7){

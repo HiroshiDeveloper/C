@@ -9,7 +9,7 @@
 3mark:"95"
 1studentID:"7813008"
 2courseID:"MADP301"
-3mark:"30"
+3mark:"100"
 1studentID:"7813009"
 2courseID:"MADP101"
 3mark:"70"

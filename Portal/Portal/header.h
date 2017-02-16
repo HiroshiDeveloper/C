@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 #define ACCOUNTSPATH "/Users/hiroshi/Documents/Github/C/Portal/Portal/Accounts.txt"
 #define STUDENTSPATH "/Users/hiroshi/Documents/Github/C/Portal/Portal/Students.txt"
@@ -23,6 +24,8 @@
 #define STUDENTSCOURSESLAST 3
 #define CHARLENGTH 256
 #define MAXARRAY 20
+#define LISTOFSTUDENT 100
+#define STUDENTIDLENGTH 10
 
 struct account{
     char *studentId;
