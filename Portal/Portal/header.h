@@ -26,6 +26,7 @@
 #define MAXARRAY 20
 #define LISTOFSTUDENT 100
 #define STUDENTIDLENGTH 10
+#define STUDENTNAMELENGTH 30
 
 struct account{
     char *studentId;

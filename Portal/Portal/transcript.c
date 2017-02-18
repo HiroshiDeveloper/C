@@ -30,7 +30,7 @@ void transcript(struct student *student, char *fileName){
     }
     
     // introduction
-    printf("\nHi %s %s,\n", student->gender2, student->name);
+    printf("Hi %s %s,\n", student->gender2, student->name);
     printf("Here is your transcript:\n");
     
     // read the file line by line

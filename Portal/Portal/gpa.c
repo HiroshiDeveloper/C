@@ -14,7 +14,7 @@ char startingNumber(char *line);
 float getGpa(FILE *fp, size_t len, ssize_t read, char *line, char *studentId);
 int listOfStudent(char *fileName, char **listOfStudent, char *studentId);
 
-float gpa(struct student *student, char *fileName, int rankFlg){
+void gpa(struct student *student, char *fileName, int rankFlg){
     FILE *fp;
     size_t len = 0;
     ssize_t read;
@@ -40,7 +40,7 @@ float gpa(struct student *student, char *fileName, int rankFlg){
     }
     
     // introduction
-    printf("\nHi %s %s,\n", student->gender2, student->name);
+    printf("Hi %s %s,\n", student->gender2, student->name);
     printf("Your GPA is %f ", myGpa);
     
     // print my GPA with my rank
@@ -60,7 +60,7 @@ float gpa(struct student *student, char *fileName, int rankFlg){
         printf("and therefore your rank is %d.\n", rank);
     }
     printf("\n");
-    return 0;
+    return;
 }
 
 int listOfStudent(char *fileName, char **listOfStudent, char *studentId){

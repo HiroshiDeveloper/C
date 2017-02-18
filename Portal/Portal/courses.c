@@ -34,7 +34,7 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
     
     // introduction
     if(offeredFlg == 0){
-        printf("\nHi %s %s,\n", student->gender2, student->name);
+        printf("Hi %s %s,\n", student->gender2, student->name);
         printf("You have taken the following courses:\n");
     }else{
         printf("\nThe following courses are offered in CICCC:\n");

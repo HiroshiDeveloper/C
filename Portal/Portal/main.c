@@ -28,25 +28,37 @@ void transcript(struct student *student, char *fileName);
 
 // main menu 4.
 // main menu 5.
-float gpa(struct student *student, char *fileName, int rankFlg);
+void gpa(struct student *student, char *fileName, int rankFlg);
+
+// main menu 7.
+void studentIdAndName(char *fileName);
 
 // main
 int mainMenu();
-void switchMenu(int number, char *studentId);
+int switchMenu(int number, char *studentId);
 
 int main(int argc, const char * argv[]) {
     char *studentId = malloc(sizeof(char) * CHARLENGTH);
     char *password = malloc(sizeof(char) * CHARLENGTH);
+    int number = 0, flg = 1;
     
     // Account check
-    struct account *account = (struct account*)malloc(sizeof(struct account));
-    account = loginMenu(account, studentId, password);
+    struct account *account = NULL;
     
     // Main menu
-    int number = mainMenu();
-    switchMenu(number, account->studentId);
-    
-    free(account);
+    while(flg){
+        if(flg == 2 || account == NULL){
+            account = (struct account*)malloc(sizeof(struct account));
+            account = loginMenu(account, studentId, password);
+        }else{
+            number = mainMenu();
+            flg = switchMenu(number, account->studentId);
+            if(flg == 2 || flg == 0){
+                free(account);
+            }
+        }
+    }
+
     free(studentId);
     free(password);
     return 0;
@@ -72,6 +84,7 @@ int mainMenu(){
         printf("******************************************************\n");
         printf("Enter the number corresponding to each item to procees: ");
         scanf("%d", &number);
+        printf("\n");
         if(number < 10 && number > 0){
             flg = 0;
         }else{
@@ -81,11 +94,10 @@ int mainMenu(){
     return number;
 }
 
-void switchMenu(int number, char *studentId){
-    float myGpa = 0;
-    
-    if(number == 1 || number == 2 || number == 3 || number == 4 || number == 5 || number == 6){
+int switchMenu(int number, char *studentId){
+    if(number >= 1 && number <= 6){
         struct student *student = studentFile(studentId, STUDENTSPATH);
+        
         if(number == 1){
             createCertificate(student);
         }
@@ -96,20 +108,22 @@ void switchMenu(int number, char *studentId){
             transcript(student, STUDENTSCOURSESPATH);
         }
         else if(number == 4){
-            myGpa = gpa(student, STUDENTSCOURSESPATH, 0);
+            gpa(student, STUDENTSCOURSESPATH, 0);
         }
         else if(number == 5){
-            myGpa = gpa(student, STUDENTSCOURSESPATH, 1);
+            gpa(student, STUDENTSCOURSESPATH, 1);
         }
         else if(number == 6){
             courseFile(student, COURSESPATH, 1);
         }
         free(student);
     }else if(number == 7){
-        
+        studentIdAndName(STUDENTSPATH);
     }else if(number == 8){
-        
+        return 2;
     }else{
-        
+        printf("See you!\n");
+        return 0;
     }
+    return 1;
 }

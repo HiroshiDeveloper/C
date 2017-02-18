@@ -26,13 +26,12 @@ struct account * loginMenu(struct account *account, char *studentId, char *passw
     
     account = AccountFile(account, ACCOUNTSPATH, studentId, password);
     if(account->studentId == NULL || account->password == NULL){
-        printf("******************************************************\n");
+        printf("\n******************************************************\n");
         printf("Your account does not exist. Please try again.\n");
-        printf("******************************************************\n");
+        printf("******************************************************\n\n");
         free(account);
         free(studentId);
         free(password);
-        exit(0);
     }else{
         printf("\n******************************************************\n");
         printf("Welcome to CICCC\n");
