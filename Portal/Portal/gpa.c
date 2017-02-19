@@ -11,16 +11,19 @@
 
 char *extractWords(char *line);
 char startingNumber(char *line);
+char *mrOrMs(char *gender);
 float getGpa(FILE *fp, size_t len, ssize_t read, char *line, char *studentId);
 int listOfStudent(char *fileName, char **listOfStudent, char *studentId);
 
 void gpa(struct student *student, char *fileName, int rankFlg){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
     char *line = NULL;
+    char *studentsList[LISTOFSTUDENT];
+    char *gender2 = mrOrMs(student->gender);
     float myGpa = 0, tmpGpa = 0;
-    char **studentsList;
     int sizeOfStudent = 0, rank = 1;
     
     // file open
@@ -29,6 +32,7 @@ void gpa(struct student *student, char *fileName, int rankFlg){
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
+        free(student);
         exit(0);
     }
     
@@ -40,14 +44,18 @@ void gpa(struct student *student, char *fileName, int rankFlg){
     }
     
     // introduction
-    printf("Hi %s %s,\n", student->gender2, student->name);
-    printf("Your GPA is %f ", myGpa);
+    printf("Hi %s %s,\n", gender2, student->name);
+    printf("Your GPA is %f\n", myGpa);
     
     // print my GPA with my rank
     // get the list of student
     if(rankFlg == 1){
         
         sizeOfStudent = listOfStudent(STUDENTSPATH, studentsList, student->studentId);
+        if(sizeOfStudent == -1){
+            free(student);
+            exit(0);
+        }
         for(int i = 0; i < sizeOfStudent; i++){
             fp=fopen(fileName, "r");
             tmpGpa = getGpa(fp, len, read, line, studentsList[i]);
@@ -64,6 +72,7 @@ void gpa(struct student *student, char *fileName, int rankFlg){
 }
 
 int listOfStudent(char *fileName, char **listOfStudent, char *studentId){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
@@ -77,7 +86,7 @@ int listOfStudent(char *fileName, char **listOfStudent, char *studentId){
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
-        exit(0);
+        return -1;
     }
     
     // read the file line by line
@@ -95,9 +104,10 @@ int listOfStudent(char *fileName, char **listOfStudent, char *studentId){
 }
 
 float getGpa(FILE *fp, size_t len, ssize_t read, char *line, char *studentId){
+    
     char *words, firstCharacter;
-    int flg = 0, index = 0;
     float gpa = 0;
+    int flg = 0, index = 0;
     
     // read the file line by line
     while ((read = getline(&line, &len, fp)) != -1) {

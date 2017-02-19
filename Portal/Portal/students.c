@@ -14,6 +14,7 @@ char startingNumber(char *line);
 void printListStudent(char **studentIdList, char **studentNameList, int counter);
 
 void studentIdAndName(char *fileName){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
@@ -28,7 +29,7 @@ void studentIdAndName(char *fileName){
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
-        exit(0);
+        return;
     }
     
     // read the file line by line

@@ -12,12 +12,15 @@
 char *extractWords(char *line);
 char startingNumber(char *line);
 char *getCourseName(char *fileName, char *courseId);
+char *mrOrMs(char *gender);
 
 void transcript(struct student *student, char *fileName){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
     char *line = NULL, *words, firstCharacter, *courseName;
+    char *gender2 = mrOrMs(student->gender);
     int index = 1, flg = 0;
     
     // file open
@@ -26,17 +29,19 @@ void transcript(struct student *student, char *fileName){
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
+        free(student);
         exit(0);
     }
     
     // introduction
-    printf("Hi %s %s,\n", student->gender2, student->name);
+    printf("Hi %s %s,\n", gender2, student->name);
     printf("Here is your transcript:\n");
     
     // read the file line by line
     while ((read = getline(&line, &len, fp)) != -1) {
         words = extractWords(line);                     // extract words e.g.) StudentId, Pass
         firstCharacter = startingNumber(line);
+        
         if(firstCharacter == '1' && strcmp(words, student->studentId) == 0){
             flg = 1;
         }else if(firstCharacter == '2' && flg == 1){
@@ -54,12 +59,15 @@ void transcript(struct student *student, char *fileName){
 }
 
 char startingNumber(char *line){
+    
     char firstCharacter;
     firstCharacter = line[0];
+    
     return firstCharacter;
 }
 
 char *getCourseName(char *fileName, char *courseId){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;

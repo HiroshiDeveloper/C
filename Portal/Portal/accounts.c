@@ -14,7 +14,6 @@ struct account *AccountFile(struct account *account, char *fileName, char *stude
 char *extractWords(char *line);
 
 struct account * loginMenu(struct account *account, char *studentId, char *password){
-    //struct account *account = (struct account*)malloc(sizeof(struct account));
     
     printf("******************************************************\n");
     printf("Please enter your account to login:\n");
@@ -25,13 +24,12 @@ struct account * loginMenu(struct account *account, char *studentId, char *passw
     scanf("%s", password);
     
     account = AccountFile(account, ACCOUNTSPATH, studentId, password);
+    sleep(2);
     if(account->studentId == NULL || account->password == NULL){
         printf("\n******************************************************\n");
         printf("Your account does not exist. Please try again.\n");
         printf("******************************************************\n\n");
-        free(account);
-        free(studentId);
-        free(password);
+        return NULL;
     }else{
         printf("\n******************************************************\n");
         printf("Welcome to CICCC\n");
@@ -41,6 +39,7 @@ struct account * loginMenu(struct account *account, char *studentId, char *passw
 }
 
 struct account *AccountFile(struct account *account, char *fileName, char *studentId, char *password){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
@@ -53,6 +52,8 @@ struct account *AccountFile(struct account *account, char *fileName, char *stude
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
+        free(studentId);
+        free(password);
         exit(0);
     }
     
@@ -76,9 +77,10 @@ struct account *AccountFile(struct account *account, char *fileName, char *stude
 }
 
 char *extractWords(char *line){
+    
+    char *words = malloc(sizeof(char) * CHARLENGTH);
     int length = (int)(strlen(line) - 2);   // subtract '"' + '\n'
     int checkPoint = -1;
-    char *words = malloc(sizeof(char) * CHARLENGTH);
     
     for(int i = 0; i < length; i++){
         if(checkPoint != -1){

@@ -11,8 +11,11 @@
 
 char *extractWords(char *line);
 int getNumberOfWords(char *string, char *mark);
+char *mrOrMs(char *gender);
+char *heOrShe(char *gender);
 
 struct student *studentFile(char *studentId, char *fileName){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
@@ -20,13 +23,13 @@ struct student *studentFile(char *studentId, char *fileName){
     int flg = 0;
     struct student *student = (struct student*)malloc(sizeof(struct student));
 
-    
     // file open
     fp=fopen(fileName, "r");
     
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
+        free(student);
         exit(0);
     }
     
@@ -43,22 +46,15 @@ struct student *studentFile(char *studentId, char *fileName){
                     break;
                 case 2:
                     student->gender = words;
-                    if(strcmp(student->gender, "male") == 0){
-                        student->gender2 = "Mr.";
-                        student->gender3 = "he";
-                    }else{
-                        student->gender2 = "Ms.";
-                        student->gender3 = "she";
-                    }
                     break;
                 case 3:
-                    student->grade = words;
+                    student->grade = atoi(words);
                     break;
                 case 4:
                     student->address = words;
                     break;
                 case 5:
-                    student->admission_year = words;
+                    student->admission_year = atoi(words);
                     break;
                 case 6:
                     student->courses = words;
@@ -72,11 +68,14 @@ struct student *studentFile(char *studentId, char *fileName){
 }
 
 void createCertificate(struct student *student){
+    
+    char *gender2 = mrOrMs(student->gender);
+    char *gender3 = heOrShe(student->gender);
     int number = getNumberOfWords(student->courses, ",");
     
     printf("Dear Sir/Madam,\n\n");
-    printf("This is to certify that %s %s with student id %s is a student at grade %s at CICCC.\n", student->gender2, student->name, student->studentId, student->grade);
-    printf("He was admitted to our college in %s and taken %d course(s). Currently %s resides at %s.\n\n", student->admission_year, number, student->gender3, student->address);
+    printf("This is to certify that %s %s with student id %s is a student at grade %d at CICCC.\n", gender2, student->name, student->studentId, student->grade);
+    printf("He was admitted to our college in %d and taken %d course(s). Currently %s resides at %s.\n\n", student->admission_year, number, gender3, student->address);
     printf("If you have any questions, please don't hesitate to contact us.\n\n");
     printf("Thanks,\nWilliam\n\n\n");
 }
@@ -84,8 +83,9 @@ void createCertificate(struct student *student){
 // char *string : target line
 // char *mark : deivded mark e.g.) ","
 int getNumberOfWords(char *string, char *mark){
-    int number = 0;
+    
     char *tok;
+    int number = 0;
     
     tok = strtok(string, mark);
     while(tok != NULL){
@@ -93,5 +93,30 @@ int getNumberOfWords(char *string, char *mark){
         number++;
     }
     return number;
+}
+
+char *mrOrMs(char *gender){
+    
+    char *result;
+    
+    if(strcmp(gender, "male") == 0){
+        result = "Mr.";
+    }else{
+        result = "Ms.";
+    }
+    
+    return result;
+}
+
+char *heOrShe(char *gender){
+    char *result;
+    
+    if(strcmp(gender, "male") == 0){
+        result = "he";
+    }else{
+        result = "she";
+    }
+    
+    return result;
 }
 

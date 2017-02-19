@@ -26,6 +26,7 @@
 #define MAXARRAY 20
 #define LISTOFSTUDENT 100
 #define STUDENTIDLENGTH 10
+#define STUDENTPASSLENGTH 20
 #define STUDENTNAMELENGTH 30
 
 struct account{
@@ -37,11 +38,9 @@ struct student{
     char *studentId;
     char *name;
     char *gender;
-    char *gender2;  // Mr or Ms
-    char *gender3;  // He or She
-    char *grade;
+    int grade;
     char *address;
-    char *admission_year;
+    int admission_year;
     char *courses;
 };
 

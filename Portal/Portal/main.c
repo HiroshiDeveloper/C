@@ -7,10 +7,6 @@
 //
 
 #include "header.h"
-#include "accounts.h"
-#include "certificate.h"
-#include "courses.h"
-#include "transcript.h"
 
 // account
 struct account *loginMenu(struct account *account, char *studentId, char *password);
@@ -38,8 +34,9 @@ int mainMenu();
 int switchMenu(int number, char *studentId);
 
 int main(int argc, const char * argv[]) {
-    char *studentId = malloc(sizeof(char) * CHARLENGTH);
-    char *password = malloc(sizeof(char) * CHARLENGTH);
+    
+    char studentId[STUDENTIDLENGTH];
+    char password[STUDENTPASSLENGTH];
     int number = 0, flg = 1;
     
     // Account check
@@ -47,6 +44,8 @@ int main(int argc, const char * argv[]) {
     
     // Main menu
     while(flg){
+        // number 6 in main menu or the first time,
+        // login menu is displayed
         if(flg == 2 || account == NULL){
             account = (struct account*)malloc(sizeof(struct account));
             account = loginMenu(account, studentId, password);
@@ -58,13 +57,12 @@ int main(int argc, const char * argv[]) {
             }
         }
     }
-
-    free(studentId);
-    free(password);
+    
     return 0;
 }
 
 int mainMenu(){
+    
     int number = 0;
     int flg = 1;
     
@@ -83,41 +81,65 @@ int mainMenu(){
         printf("-[9] Exit\n");
         printf("******************************************************\n");
         printf("Enter the number corresponding to each item to procees: ");
-        scanf("%d", &number);
-        printf("\n");
-        if(number < 10 && number > 0){
-            flg = 0;
+        if(scanf("%d", &number) == 0){
+            scanf("%*[^\n]%*c");
+            printf("\n");
+            printf("Error. Choose a number between 1 and 9\n\n");
         }else{
-            printf("Error. Choose a number between 1 and 9\n");
-        }
+            printf("\n");
+            if(number < 10 && number > 0){
+                flg = 0;
+            }else{
+                printf("Error. Choose a number between 1 and 9\n\n");
+            }
+        };
     }
     return number;
 }
 
 int switchMenu(int number, char *studentId){
+    
+    // Main menu 1 - 6
     if(number >= 1 && number <= 6){
         struct student *student = studentFile(studentId, STUDENTSPATH);
+        if(student == NULL){
+            return 0;
+        }
         
         if(number == 1){
+            // print my enrolment certificate
+            // certificate.c file
             createCertificate(student);
         }
         else if(number == 2){
+            // print my courses
+            // courses.c
             courseFile(student, COURSESPATH, 0);
         }
         else if(number == 3){
+            // print my transcript
+            // transcript.c
             transcript(student, STUDENTSCOURSESPATH);
         }
         else if(number == 4){
+            // print my gpa
+            // gpa.c
             gpa(student, STUDENTSCOURSESPATH, 0);
         }
         else if(number == 5){
+            // print my ranking among all students in the college
+            // gpa.c(the third parameter is 1 -> calcurate the rank)
             gpa(student, STUDENTSCOURSESPATH, 1);
         }
         else if(number == 6){
+            // list all available courses
+            // courses.c(the third parameter is 1 -> implemented the list all available courses)
             courseFile(student, COURSESPATH, 1);
         }
         free(student);
     }else if(number == 7){
+        // List all student
+        // student.c file
         studentIdAndName(STUDENTSPATH);
     }else if(number == 8){
         return 2;

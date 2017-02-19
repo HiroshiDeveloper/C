@@ -11,13 +11,16 @@
 
 char *extractWords(char *line);
 int arrayComma(char *courseName, char *array[]);
+char *mrOrMs(char *gender);
 
 void courseFile(struct student *student, char *fileName, int offeredFlg){
+    
     FILE *fp;
     size_t len = 0;
     ssize_t read;
     char *line = NULL, *words;
     char *arrayCourses[MAXARRAY];   // devided courses by comma
+    char *gender2 = mrOrMs(student->gender);
     int courseLength = 0, flg = 0, counter = 0, index = 1;
     
     // file open
@@ -26,6 +29,7 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
     // error if the file is not found
     if (fp == NULL){
         printf("Cannot find the text file in this URL: %s\n", fileName);
+        free(student);
         exit(0);
     }
     
@@ -34,7 +38,7 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
     
     // introduction
     if(offeredFlg == 0){
-        printf("Hi %s %s,\n", student->gender2, student->name);
+        printf("Hi %s %s,\n", gender2, student->name);
         printf("You have taken the following courses:\n");
     }else{
         printf("\nThe following courses are offered in CICCC:\n");
@@ -65,7 +69,6 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
                     flg = 0;
                     index++;                                // index of students list e.g.) 1), 2)
                 }
-                
             }else{                                          // main menu 6
                 printf("%s\n", words);
             }
@@ -81,6 +84,7 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
 // e,g.)
 // MADP101, MADP201, MADP301 -> [MADP101, MADP201, MADP301] and counter(the size of array)
 int arrayComma(char *courseName, char *array[]){
+    
     char *tok;
     char *mark = ",";
     int counter = 0;
