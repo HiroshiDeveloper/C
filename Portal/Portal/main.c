@@ -33,10 +33,12 @@ void studentIdAndName(char *fileName);
 int mainMenu();
 int switchMenu(int number, char *studentId);
 
+
+
 int main(int argc, const char * argv[]) {
     
-    char studentId[STUDENTIDLENGTH];
-    char password[STUDENTPASSLENGTH];
+    char studentId[STUDENTIDLENGTH] = {};
+    char password[STUDENTPASSLENGTH] = {};
     int number = 0, flg = 1;
     
     // Account check
@@ -49,6 +51,9 @@ int main(int argc, const char * argv[]) {
         if(flg == 2 || account == NULL){
             account = (struct account*)malloc(sizeof(struct account));
             account = loginMenu(account, studentId, password);
+            if(flg == 2){
+                flg = 1;
+            }
         }else{
             number = mainMenu();
             flg = switchMenu(number, account->studentId);
