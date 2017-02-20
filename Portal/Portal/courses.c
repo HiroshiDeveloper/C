@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "courses.h"
 
 char *extractWords(char *line);
 int arrayComma(char *courseName, char *array[]);

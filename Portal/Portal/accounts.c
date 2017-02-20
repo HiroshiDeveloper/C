@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "accounts.h"
 
 struct account *loginMenu(struct account *account, char *studentId, char *password);
 struct account *AccountFile(struct account *account, char *fileName, char *studentId, char *password);

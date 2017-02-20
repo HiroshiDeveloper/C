@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "certificate.h"
 
 char *extractWords(char *line);
 int getNumberOfWords(char *string, char *mark);

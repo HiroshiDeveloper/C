@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "gpa.h"
 
 char *extractWords(char *line);
 char startingNumber(char *line);

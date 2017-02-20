@@ -7,7 +7,6 @@
 //
 
 #include "header.h"
-#include "students.h"
 
 char *extractWords(char *line);
 char startingNumber(char *line);
