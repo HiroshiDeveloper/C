@@ -41,7 +41,7 @@ void courseFile(struct student *student, char *fileName, int offeredFlg){
         printf("Hi %s %s,\n", gender2, student->name);
         printf("You have taken the following courses:\n");
     }else{
-        printf("\nThe following courses are offered in CICCC:\n");
+        printf("The following courses are offered in CICCC:\n");
     }
     
     // read the file line by line
